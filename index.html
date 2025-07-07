@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .vh-100 {
+            height: 100vh;
+        }
+
+        .login-left {
+            background-color: #f9f2cb;
+        }
+
+        .center-form {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #2c4552;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+
+        .success {
+            color: green;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid vh-100">
+        <div class="row h-100">
+            <!-- Left side - Login Form -->
+            <div class="col-md-6 d-flex align-items-center login-left">
+                <div class="center-form w-100 px-4">
+                    <h1 class="mb-1">Welcome back!</h1>
+                    <p class="mb-4">Enter your credentials to access your account</p>
+
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="inputemail" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="inputemail" placeholder="Enter your email">
+                            <div id="emailError" class="error"></div>
+                        </div>
+
+                        
+                        <div class="mb-3">
+                            <label for="inputPassword" class="form-label">Password</label>
+                            <input type="password" id="inputPassword" class="form-control"
+                                placeholder="Enter your password">
+                            <div id="passwordError" class="error"></div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="checkDefault">
+                                <label class="form-check-label" for="checkDefault">Remember for 30 days</label>
+                            </div>
+                            <a href="#" class="text-decoration-none">Forgot password?</a>
+                        </div>
+
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+
+                        <div class="d-flex align-items-center my-3">
+                            <hr class="flex-grow-1">
+                            <span class="px-2 text-muted">or</span>
+                            <hr class="flex-grow-1">
+                        </div>
+
+                        <div class="row mt-3 text-center">
+                            <div class="col-6">
+                                <button type="button" class="btn btn-outline-secondary w-100">Sign in with
+                                    Google</button>
+                            </div>
+                            <div class="col-6">
+                                <button type="button" class="btn btn-outline-dark w-100">Sign in with Apple</button>
+                            </div>
+                        </div>
+
+                        <div class="mt-3 text-center">
+                            Don't have an account?
+                            <a href="#" class="text-decoration-none">Sign Up</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right side - Placeholder for image or content -->
+            <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center bg-light">
+                <img src="6300959.jpg" class="img-fluid" alt="login picture">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const email = document.getElementById("inputemail").value.trim();
+            const password = document.getElementById("inputPassword").value.trim();
+            let isValid = true;
+
+            // Reset error messages
+            document.getElementById("emailError").innerText = "";
+            document.getElementById("passwordError").innerText = "";
+            document.getElementById("emailError").className = "error";
+            document.getElementById("passwordError").className = "error";
+
+            // Email Validation
+            if (email === "") {
+                document.getElementById("emailError").innerText = "Email is required";
+                isValid = false;
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                document.getElementById("emailError").innerText = "Invalid email format";
+                isValid = false;
+            } else {
+                document.getElementById("emailError").innerText = "Email is valid";
+                document.getElementById("emailError").className = "success";
+            }
+
+            // Password Validation
+            if (password === "") {
+                document.getElementById("passwordError").innerText = "Password is required";
+                isValid = false;
+            } else if (password.length < 6) {
+                document.getElementById("passwordError").innerText = "Password must be at least 6 characters";
+                isValid = false;
+            } else {
+                document.getElementById("passwordError").innerText = "Password format is valid";
+                document.getElementById("passwordError").className = "success";
+            }
+
+            if (isValid) {
+                // Submit form or perform AJAX login
+                alert("Form submitted successfully!");
+                // this.submit(); // Uncomment if you want actual form submission
+            }
+        });
+    </script>
+</body>
+
+</html>
